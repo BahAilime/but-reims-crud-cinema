@@ -1,0 +1,18 @@
+{
+    "name": "guil0230/sae2-01",
+    "description": "Développement d'une application Web de consultation et modification de séries",
+    "type": "project",
+    "license": "Copyleft",
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Firmin Guillard",
+            "email": "firmin.guillard@etudiant.univ-reims.fr"
+        }
+    ],
+    "require": {}
+}
