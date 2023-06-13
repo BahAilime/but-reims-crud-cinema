@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+header, footer, .island, input, textarea, button, main, form {
+    border-radius: 20px;
+    box-shadow: 12px 12px 24px #b2b8c9, -12px -12px 24px #f0f8ff;
+}
+
+body {
+    /* Espacement général entre chaque éléments */
+    --espace: 20px;
+
+    height: 100vh;
+    background: #D1D8EC;
+
+    display: flex;
+    flex-direction: column;
+}
+
+header, footer {
+    text-align: center;
+    padding: var(--espace);
+    margin: var(--espace);
+}
+
+main {
+    flex: 1;
+
+    margin: var(--espace);
+    padding: var(--espace);
+    overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--espace);
+}
+
+.modif {
+    display: flex;
+    gap: var(--espace);
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.island {
+    padding: var(--espace);
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espace);
+}
+
+label {
+    text-decoration: underline;
+    text-align: center;
+}
+
+input, textarea, button, select{
+    border-radius: 5px;
+    border: 1px #a3a9b9 solid;
+    padding: 10px;
+    background: #e1e7ff;
+}
+
+form {
+    padding: var(--espace);
+    display: flex;
+    gap: var(--espace);
+    justify-content: space-between;
+}
+
+/* SELECTION D'ENREGISTREMENT */
+form:first-of-type :first-child {
+    flex: 1;
+}
+
+#del {
+    background: #f5afaf;
+    flex: 1;
+}
