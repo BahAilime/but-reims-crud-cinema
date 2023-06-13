@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+header, footer, .acteur, .acteur-info h1, .acteur-info h2, .film, .film-info h1, img {
+    border-radius: 20px;
+    box-shadow: 12px 12px 24px #b2b8c9, -12px -12px 24px #f0f8ff;
+}
+
+body {
+    /* Espacement général entre chaque éléments */
+    --espace: 20px;
+
+    height: 100vh;
+    background: #D1D8EC;
+
+    display: flex;
+    flex-direction: column;
+}
+
+header, footer {
+    text-align: center;
+    padding: var(--espace);
+    margin: var(--espace);
+}
+
+main {
+    flex: 1;
+
+    padding: 30px var(--espace);
+    overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--espace);
+}
+
+/* ACTEUR */
+
+.acteur {
+    display: flex;
+    gap: var(--espace);
+    flex-direction: column;
+    padding: var(--espace);
+}
+
+.acteur img {
+    object-fit: cover;
+    border-radius: 15px;
+    border: #b2b8c9 solid 4px;
+}
+
+.acteur-info {
+    flex: 1;
+    padding: 0 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--espace);
+}
+
+.troisieme-ligne {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espace);
+}
+
+.troisieme-ligne :first-child, .troisieme-ligne :last-child {
+    flex: 1;
+}
+
+.troisieme-ligne * {
+    text-align: center;
+}
+
+.titre, .biographie {
+    flex: 1;
+}
+
+.acteur-info h1, .acteur-info h2 {
+    padding: var(--espace);
+}
+
+
+/* FILM */
+a {text-decoration: none;}
+
+.film {
+    padding: var(--espace);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: black;
+}
+
+.film img {
+    object-fit: cover;
+    border-radius: 15px;
+    border: #b2b8c9 solid 4px;
+}
+
+.prem-ligne {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espace);
+}
+
+.film-info {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.film-info h1 {
+    text-align: center;
+    padding: 12px;
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 500px) {
+    .film {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 600px) {
+    .acteur {
+        flex-direction: row;
+    }
+}
+
+
+@media (min-width: 800px) {
+    .troisieme-ligne {
+        flex-direction: row;
+    }
+    .prem-ligne {
+        flex-direction: row;
+    }
+}
