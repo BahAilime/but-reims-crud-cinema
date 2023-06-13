@@ -8,7 +8,7 @@ use Entity\Movie;
 use Entity\People;
 use Html\WebPage;
 
-$movieId=0;
+$movieId = 0;
 if (!empty($_GET["movieId"]) && ctype_digit($_GET["movieId"])) {
     $movieId = $_GET["movieId"];
 } else {
@@ -46,20 +46,23 @@ foreach ($roles as $role) {
     $ppl = People::findById($role->getPeopleId());
     $html->appendContent(
         <<<HTML
-<a href='/people.php?pplId={$role->getPeopleId()}' class='acteur'>
+<a href='/actor.php?actorId={$role->getPeopleId()}' class='acteur'>
     <img src='/image.php?imgId={$ppl->getAvatarId()}' alt=''>
     <div class='acteur-info'>
       <h1>{$role->getRole()}</h1>
       <h1>joué(e) par {$ppl->getName()}</h1>
     </div>
   </a>
-HTML);
+HTML
+    );
 }
 
 $html->appendCssUrl("/CSS/movie.css");
+
+$lastModif = $html->getLastModification();
 $html->appendContent("</main>
 <footer>
-  <p>Dernière modification : 13/06 14:17</p>
+  <p>Dernière modification : {$html->escapeString($lastModif)}</p>
 </footer>
 </body>
 </html>");

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 
@@ -21,10 +22,10 @@ foreach ($movies as $movie) {
   </a>");
 }
 
-
+$lastModif = $html->getLastModification();
 $html->appendContent("</main>
 <footer>
-  <p>Dernière modification : 11/06/2023 11:15</p>
+  <p>Dernière modification : {$html->escapeString($lastModif)}</p>
 </footer>
 </body>
 </html>");

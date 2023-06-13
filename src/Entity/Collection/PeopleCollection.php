@@ -34,4 +34,28 @@ SQL
             throw new EntityNotFoundException();
         }
     }
+
+    /**
+     * @param int $peopleId
+     * @return Cast[]
+     */
+    public static function findByPeopleId(int $peopleId): array
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+    SELECT p.id AS id, movieId, peopleId, role, orderIndex
+    FROM people p
+    JOIN cast c ON (c.peopleId = p.id)
+    WHERE peopleId = ?
+    ORDER BY orderIndex
+SQL
+        );
+        $stmt->execute([$peopleId]);
+        $ppl = $stmt->fetchAll(\PDO::FETCH_CLASS, Cast::class);
+        if ($ppl) {
+            return $ppl;
+        } else {
+            throw new EntityNotFoundException();
+        }
+    }
 }
