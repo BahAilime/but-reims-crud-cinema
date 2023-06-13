@@ -20,6 +20,7 @@
     "require": {
         "ext-pdo": "*"
     },
+
     "scripts": {
         "start:linux": [
             "Composer\\Config::disableProcessTimeout",
@@ -29,5 +30,10 @@
             "Composer\\Config::disableProcessTimeout",
             "bin/run-server.bat"
         ]
-    }
+    },
+
+    "test:cs":
+    "php vendor/bin/php-cs-fixer fix --dry-run --diff",
+    "fix:cs":
+    "php vendor/bin/php-cs-fixer fix"
 }
