@@ -10,6 +10,10 @@ use PDO;
 
 class MovieCollection
 {
+
+    /**
+     * @return Movie[]
+     */
     public static function findAll(): array
     {
         $sql = MyPDO::getInstance()->prepare(

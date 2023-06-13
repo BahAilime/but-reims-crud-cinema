@@ -8,7 +8,7 @@ use DateTime;
 class Movie
 {
     private int $id;
-    private int $posterld;
+    private int $posterId;
     private string $originalLanguage;
     private string $originalTitle;
     private string $overview;
@@ -28,9 +28,9 @@ class Movie
     /**
      * @return int
      */
-    public function getPosterld(): int
+    public function getPosterId(): int
     {
-        return $this->posterld;
+        return $this->posterId;
     }
 
     /**
