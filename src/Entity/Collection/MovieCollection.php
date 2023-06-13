@@ -10,7 +10,6 @@ use PDO;
 
 class MovieCollection
 {
-
     /**
      * @return Movie[]
      */

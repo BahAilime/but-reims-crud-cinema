@@ -8,7 +8,7 @@ use Entity\Movie;
 use Entity\People;
 use Html\WebPage;
 
-$actorId=0;
+$actorId = 0;
 if (!empty($_GET["actorId"]) && ctype_digit($_GET["actorId"])) {
     $actorId = $_GET["actorId"];
 } else {
@@ -62,7 +62,8 @@ foreach ($roles as $role) {
       <h1>{$role->getRole()}</h1>
     </div>
   </a>
-HTML);
+HTML
+    );
 }
 
 $html->appendCssUrl("/CSS/actor.css");
