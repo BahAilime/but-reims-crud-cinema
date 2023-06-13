@@ -17,7 +17,7 @@ $movies = MovieCollection::findAll();
 foreach ($movies as $movie) {
 //    TODO: remettre {$movie->getId()} dans le href quand movie.php sera fait
     $html->appendContent("<a href='movie.php?movieId=' class='film'>
-    <img src='https://picsum.photos/240/360' alt=''>
+    <img src='/image.php?imgId={$movie->getPosterId()}' alt='Poster ID'>
       <h2>{$movie->getTitle()}</h2>
   </a>");
 }
