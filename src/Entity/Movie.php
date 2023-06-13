@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Entity;
 
+use Database\MyPdo;
 use DateTime;
+use Entity\Exception\EntityNotFoundException;
 
 class Movie
 {
@@ -87,5 +89,26 @@ class Movie
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public static function findById(int $id): Movie
+    {
+        $sql = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+            SELECT *
+            FROM movie
+            WHERE id = ?;
+        SQL
+        );
+
+        $sql->execute([$id]);
+
+        $movie = $sql->fetchObject(Movie::class);
+
+        if (!$movie) {
+            throw new EntityNotFoundException();
+        }
+
+        return $movie;
     }
 }
