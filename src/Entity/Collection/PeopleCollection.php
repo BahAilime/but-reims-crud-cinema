@@ -23,6 +23,7 @@ class PeopleCollection
     FROM people p
     JOIN cast c ON (c.peopleId = p.id)
     WHERE movieId = ?
+    ORDER BY orderIndex
 SQL
         );
         $stmt->execute([$movieId]);
