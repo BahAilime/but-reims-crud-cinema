@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Entity\Collection;
@@ -9,7 +10,7 @@ use PDO;
 
 class MovieCollection
 {
-    public static function findAll() : array
+    public static function findAll(): array
     {
         $sql = MyPDO::getInstance()->prepare(
             <<<'SQL'
