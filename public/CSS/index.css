@@ -61,7 +61,7 @@ a {
 
 .film img {
     object-fit: cover;
-    height: 300px;
+    height: 330px;
     border-radius: 15px;
     outline: #b2b8c9 solid 4px;
 }
