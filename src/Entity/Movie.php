@@ -20,9 +20,25 @@ class Movie
     /**
      * @return int
      */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return int
+     */
     public function getPosterld(): int
     {
         return $this->posterld;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOriginalLanguage(): string
+    {
+        return $this->originalLanguage;
     }
 
     /**
@@ -42,11 +58,27 @@ class Movie
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getReleaseDate(): DateTime
+    public function getReleaseDate(): string
     {
         return $this->releaseDate;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRuntime(): int
+    {
+        return $this->runtime;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTagline(): string
+    {
+        return $this->tagline;
     }
 
     /**
@@ -56,6 +88,4 @@ class Movie
     {
         return $this->title;
     }
-
-
 }
