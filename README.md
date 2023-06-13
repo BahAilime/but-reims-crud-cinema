@@ -46,3 +46,11 @@ Pour l'utiliser il faut utiliser plusieurs commandes :
 
 **Mise en forme automatique :**
 CTRL+SHIFT+ALT+L
+
+### Scripts composer PHP CS Fixer
+
+**Vérification de code :**
+- composer run-script test:cs
+
+**Correction de code :**
+- composer run-script fix:cs
