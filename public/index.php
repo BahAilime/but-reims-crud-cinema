@@ -15,8 +15,7 @@ $html->appendContent("<header><h1>Films</h1></header><main>");
 
 $movies = MovieCollection::findAll();
 foreach ($movies as $movie) {
-//    TODO: remettre {$movie->getId()} dans le href quand movie.php sera fait
-    $html->appendContent("<a href='movie.php?movieId=' class='film'>
+    $html->appendContent("<a href='movie.php?movieId={$movie->getId()}' class='film'>
     <img src='/image.php?imgId={$movie->getPosterId()}' alt='Poster ID'>
       <h2>{$movie->getTitle()}</h2>
   </a>");
