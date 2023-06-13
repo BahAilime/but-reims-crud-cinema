@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace Entity;
 
+use Database\MyPdo;
+use Entity\Exception\EntityNotFoundException;
+
 class People
 {
     private int $id;
     private int $avatarId;
-    private string $birthday;
-    private string $deathday;
+    private ?string $birthday;
+    private ?string $deathday;
     private string $name;
     private string $biography;
     private string $placeOfBirth;
+
     /**
      * @return int
      */
@@ -28,16 +32,16 @@ class People
         return $this->avatarId;
     }
     /**
-     * @return string
+     * @return ?string
      */
-    public function getBirthday(): string
+    public function getBirthday(): ?string
     {
         return $this->birthday;
     }
     /**
-     * @return string
+     * @return ?string
      */
-    public function getDeathday(): string
+    public function getDeathday(): ?string
     {
         return $this->deathday;
     }
@@ -63,4 +67,24 @@ class People
         return $this->placeOfBirth;
     }
 
+    public static function findById(int $id): People
+    {
+        $sql = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+            SELECT *
+            FROM people
+            WHERE id = ?;
+        SQL
+        );
+
+        $sql->execute([$id]);
+
+        $people = $sql->fetchObject(People::class);
+
+        if (!$people) {
+            throw new EntityNotFoundException();
+        }
+
+        return $people;
+    }
 }
