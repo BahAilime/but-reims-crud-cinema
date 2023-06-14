@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Entity\Collection\MovieCollection;
 use Entity\Movie;
 use Html\WebPage;
+use Html\Form\MovieForm;
 
 function selection(): string
 {
@@ -28,91 +29,14 @@ function selection(): string
 function edit(int $id): string
 {
     $movie = Movie::findById($id);
-
-    return <<<HTML
-    
-<form>
-    <input type="hidden" name="id" value="$id">
-    <div class="modif">
-      <div class="island">
-        <label for="title">Titre</label>
-        <input type="text" name="title" value="{$movie->getTitle()}">
-      </div>
-      <div class="island">
-        <label for="OGtitle">Titre original</label>
-        <input type="text" value="{$movie->getOriginalTitle()}">
-      </div>
-      <div class="island">
-        <label for="overview">Résumé</label>
-        <textarea name="overview" cols="40" rows="5">{$movie->getOverview()}</textarea>
-      </div>
-      <div class="island">
-        <label for="language">Langue</label>
-        <select name="language">
-          <option value="">Fr</option>
-          <option value="1">En</option>
-          <option value="2">Jp</option>
-          <option value="3">De</option>
-        </select>
-      </div>
-      <div class="island">
-        <label for="runtime">Durée (en min)</label>
-        <input type="number" name="runtime" value="{$movie->getRuntime()}">
-      </div>
-      <div class="island">
-        <label for="tagline">Slogan</label>
-        <input type="text" name="tagline" value="{$movie->getTagline()}">
-      </div>
-    </div>
-    <button type="submit">Valider</button>
-    </form>
-
-HTML;
-
+    $form = new MovieForm($movie);
+    return $form->getHtmlForm("/edit.php");
 }
 
 function add(): string
 {
-
-    return <<<HTML
-    
-<form>
-    <input type="hidden" name="id">
-    <div class="modif">
-      <div class="island">
-        <label for="title">Titre</label>
-        <input type="text" name="title">
-      </div>
-      <div class="island">
-        <label for="OGtitle">Titre original</label>
-        <input type="text" >
-      </div>
-      <div class="island">
-        <label for="overview">Résumé</label>
-        <textarea name="overview" cols="40" rows="5"></textarea>
-      </div>
-      <div class="island">
-        <label for="language">Langue</label>
-        <select name="language">
-          <option value="">Fr</option>
-          <option value="1">En</option>
-          <option value="2">Jp</option>
-          <option value="3">De</option>
-        </select>
-      </div>
-      <div class="island">
-        <label for="runtime">Durée (en min)</label>
-        <input type="number" name="runtime" >
-      </div>
-      <div class="island">
-        <label for="tagline">Slogan</label>
-        <input type="text" name="tagline" >
-      </div>
-    </div>
-    <button type="submit">Valider</button>
-    </form>
-
-HTML;
+    $form = new MovieForm();
+    return $form->getHtmlForm("/edit.php");
 }
 
 function delete(int $id): string

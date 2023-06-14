@@ -242,7 +242,7 @@ class Movie
         WHERE id = ?
         SQL
         );
-        $stmt->execute([$this->getTitle(), $this->getId()]);
+        $stmt->execute([$this->getTitle(), $this->getId(), $this->getOverview(), $this->getTagline(), $this->getOriginalLanguage(), $this->getReleaseDate(), $this->getTitle(), $this->getRuntime()]);
 
         return $this;
     }
