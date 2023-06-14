@@ -73,6 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['tagline']) && $_POST['tagline'] != "") {
             $movie->setTagline($_POST['tagline']);
         }
+        if (isset($_POST['releaseDate']) && $_POST['releaseDate'] != "") {
+            $movie->setReleaseDate($_POST['releaseDate']);
+        }
         $movie->save();
 
         header("Location: edit.php?movieId={$movie->getId()}");
@@ -87,6 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $movie->setOriginalLanguage($_POST['language']);
         $movie->setRuntime((int)$_POST['runtime']);
         $movie->setTagline($_POST['tagline']);
+        $movie->setReleaseDate($_POST['releaseDate']);
 
         $movie->save();
 
