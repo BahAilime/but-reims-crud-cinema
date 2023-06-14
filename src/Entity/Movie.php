@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Entity;
 
 use Database\MyPdo;
+use DateTime;
 use Entity\Exception\EntityNotFoundException;
 
 class Movie
@@ -22,9 +23,7 @@ class Movie
     /**
      * Constructeur privé
      */
-    private function __construct()
-    {
-    }
+    private function __construct(){}
 
     /**
      * @return int|null
@@ -256,7 +255,12 @@ class Movie
         WHERE id = ?
         SQL
         );
-        $stmt->execute([$this->getTitle(), $this->getOverview(), $this->getTagline(), $this->getOriginalLanguage(), $this->getReleaseDate(), $this->getOriginalTitle(), $this->getRuntime(), $this->getId()]);
+        if ($this->getReleaseDate())
+            $rDate = DateTime::createFromFormat("Y-m-d", $this->getReleaseDate()) ? DateTime::createFromFormat("Y-m-d", $this->getReleaseDate()) : null;
+        else {
+            $rDate = null;
+        }
+        $stmt->execute([$this->getTitle(), $this->getOverview(), $this->getTagline(), $this->getOriginalLanguage(), $rDate->format("Y-m-d"), $this->getOriginalTitle(), $this->getRuntime(), $this->getId()]);
         return $this;
     }
 
@@ -274,8 +278,12 @@ class Movie
         VALUES (?, ?, ?, ?, ?, ?, ?);
         SQL
         );
-
-        $sql->execute([$this->getTitle(), $this->getOverview(), $this->getTagline(), $this->getOriginalLanguage(), $this->getReleaseDate(), $this->getOriginalTitle(), $this->getRuntime()]);
+        if ($this->getReleaseDate())
+            $rDate = DateTime::createFromFormat("Y-m-d", $this->getReleaseDate()) ? DateTime::createFromFormat("Y-m-d", $this->getReleaseDate()) : null;
+        else {
+            $rDate = null;
+        }
+        $sql->execute([$this->getTitle(), $this->getOverview(), $this->getTagline(), $this->getOriginalLanguage(), $rDate->format("Y-m-d"), $this->getOriginalTitle(), $this->getRuntime()]);
 
         $lastInsertId = MyPDO::getInstance()->lastInsertId();
         $this->setId((int)$lastInsertId);
