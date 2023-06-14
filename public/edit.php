@@ -52,6 +52,7 @@ HTML;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['id'] == "") {
         $movie = Movie::create();
+        $movie->setId(null);
         if (isset($_POST['title']) && $_POST['title'] != "") {
             $movie->setTitle($_POST['title']);
         }

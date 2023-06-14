@@ -24,6 +24,13 @@ class Movie
      */
     private function __construct()
     {
+        $this->originalLanguage = '';
+        $this->originalTitle = '';
+        $this->overview = '';
+        $this->releaseDate = '';
+        $this->runtime = 0;
+        $this->tagline = '';
+        $this->title = '';
     }
 
     /**
@@ -187,15 +194,29 @@ class Movie
     public static function create($id = null, $title = null, $overview = null, $tagline = null, $originalLanguage = null, $releaseDate = null, $originalTitle = null, $runtime = null): Movie
     {
         $movie = new self();
-        $movie->setTitle($title);
-        $movie->setOverview($overview);
-        $movie->setTagline($tagline);
-        $movie->setOriginalLanguage($originalLanguage);
-        $movie->setReleaseDate($releaseDate);
-        $movie->setOriginalTitle($originalTitle);
-        $movie->setRuntime($runtime);
         if ($id) {
             $movie->setId($id);
+        }
+        if ($title) {
+            $movie->setTitle($title);
+        }
+        if ($overview) {
+            $movie->setOverview($overview);
+        }
+        if ($tagline) {
+            $movie->setTagline($tagline);
+        }
+        if ($originalLanguage) {
+            $movie->setOriginalLanguage($originalLanguage);
+        }
+        if ($releaseDate) {
+            $movie->setReleaseDate($releaseDate);
+        }
+        if ($originalTitle) {
+            $movie->setOriginalTitle($originalTitle);
+        }
+        if ($runtime) {
+            $movie->setRuntime($runtime);
         }
         return $movie;
     }
