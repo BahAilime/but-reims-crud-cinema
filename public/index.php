@@ -12,7 +12,7 @@ $html->appendToHead("<meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>");
 
 $html->setTitle('Films');
-$html->appendContent("<header><h1>Films</h1></header><main>");
+$html->appendContent("<header><div></div><h1>Films</h1><nav><a href='edit.php'><img src='img/edit.png' alt='edit icon'></a></nav></header><main>");
 
 $movies = MovieCollection::findAll();
 foreach ($movies as $movie) {
