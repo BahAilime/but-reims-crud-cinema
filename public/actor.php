@@ -52,7 +52,7 @@ foreach ($roles as $role) {
     $movie = Movie::findById($role->getMovieId());
     $html->appendContent(
         <<<HTML
-<a href='/movie.php?movieId={$role->getMovieId()}' class='film'>
+<a href='/movie.php?tpImg=poster&&movieId={$role->getMovieId()}' class='film'>
     <img src='/image.php?imgId={$movie->getPosterId()}' alt=''>
     <div class='film-info'>
       <div class='prem-ligne'>
