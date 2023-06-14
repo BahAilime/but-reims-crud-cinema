@@ -30,12 +30,12 @@ class MovieForm
 
     public function getHtmlForm(string $action): string
     {
-        $movieTitle = $this->escapeString($this->movie?->getTitle());
-        $movieOriginalTitle = $this->escapeString($this->movie?->getOriginalTitle());
-        $movieOverview = $this->escapeString($this->movie?->getOverview());
-        $movieLanguage = $this->escapeString($this->movie?->getOriginalLanguage());
-        $movieRuntime = $this->escapeString((string)$this->movie?->getRuntime());
-        $movieTagline = $this->escapeString($this->movie?->getTagline());
+        $movieTitle = $this->movie?->getTitle() ? $this->escapeString($this->movie?->getTitle()) : null;
+        $movieOriginalTitle = $this->movie?->getOriginalTitle() ? $this->escapeString($this->movie?->getOriginalTitle()) : null;
+        $movieOverview = $this->movie?->getOverview() ? $this->escapeString($this->movie?->getOverview()) : null;
+        $movieLanguage = $this->movie?->getOriginalLanguage() ?$this->escapeString($this->movie?->getOriginalLanguage()) : null;
+        $movieRuntime = (string)$this->movie?->getRuntime() ?$this->escapeString((string)$this->movie?->getRuntime()) : null;
+        $movieTagline = $this->movie?->getTagline() ? $this->escapeString($this->movie?->getTagline()) : null;
 
         return <<<HTML
         <form action="{$action}" method="post">
