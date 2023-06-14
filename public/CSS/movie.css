@@ -20,7 +20,27 @@ body {
     flex-direction: column;
 }
 
-header, footer {
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+nav {
+    padding-right: 50px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+header div {
+    padding-right: 100px;
+}
+
+  header, footer {
     text-align: center;
     padding: var(--espace);
     margin: var(--espace);
