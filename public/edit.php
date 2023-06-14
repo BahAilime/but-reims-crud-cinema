@@ -176,7 +176,7 @@ $html = new WebPage();
 $html->appendToHead("<meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>");
 $html->setTitle('Édit');
-$html->appendContent("<header><h1>Édit</h1></header><main>");
+$html->appendContent("<header><div></div><h1>Édit</h1><nav><a href='index.php'><img src='img/home.png' alt='edit icon'></a></nav></header><main>");
 $html->appendContent(selection());
 
 if (!empty($_GET["movieId"]) && ctype_digit($_GET["movieId"])) {
