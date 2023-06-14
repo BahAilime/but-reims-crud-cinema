@@ -9,6 +9,21 @@ header, footer, .island, input, textarea, button, main, form, .delete  {
     box-shadow: 12px 12px 24px #b2b8c9, -12px -12px 24px #f0f8ff;
 }
 
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav, header div {
+    padding-right: 50px;
+}
+
+nav img {
+    padding: 5px;
+}
+
 body {
     /* Espacement général entre chaque éléments */
     --espace: 20px;
