@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-header, footer, .island, input, textarea, button, main, form {
+header, footer, .island, input, textarea, button, main, form, .delete  {
     border-radius: 20px;
     box-shadow: 12px 12px 24px #b2b8c9, -12px -12px 24px #f0f8ff;
 }
@@ -58,7 +58,7 @@ label {
     text-align: center;
 }
 
-input, textarea, button, select{
+input, textarea, button, select {
     border-radius: 5px;
     border: 1px #a3a9b9 solid;
     padding: 10px;
@@ -77,7 +77,17 @@ form:first-of-type :first-child {
     flex: 1;
 }
 
-#del {
+.delete a {
     background: #f5afaf;
     flex: 1;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+}
+
+.delete {
+    padding: var(--espace);
+    display: flex;
 }

@@ -24,13 +24,6 @@ class Movie
      */
     private function __construct()
     {
-        $this->originalLanguage = '';
-        $this->originalTitle = '';
-        $this->overview = '';
-        $this->releaseDate = '';
-        $this->runtime = 0;
-        $this->tagline = '';
-        $this->title = '';
     }
 
     /**

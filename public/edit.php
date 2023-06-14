@@ -42,12 +42,14 @@ function add(): string
 function delete(int $id): string
 {
     return <<<HTML
-<form>
-    <input type="hidden" name="id" value="$id">
-    <button type="submit" id="del">Supprimer</button>
-</form>
+<div class="delete">
+    <a href="/delete.php?id=$id" >Supprimer</a>
+</div>
 HTML;
 }
+
+
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['id'] == "") {
