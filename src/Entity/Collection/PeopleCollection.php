@@ -12,8 +12,11 @@ use Entity\People;
 class PeopleCollection
 {
     /**
-     * @param int $movieId
-     * @return Cast[]
+     * Recherche tous les membres du casting d'un film spécifié par son identifiant.
+     *
+     * @param int $movieId L'identifiant du film.
+     * @return Cast[] Un tableau contenant tous les membres du casting du film.
+     * @throws EntityNotFoundException Si aucun membre du casting n'est trouvé pour le film spécifié.
      */
     public static function findByMovieId(int $movieId): array
     {
@@ -35,9 +38,13 @@ SQL
         }
     }
 
+
     /**
-     * @param int $peopleId
-     * @return Cast[]
+     * Recherche tous les films dans lesquels un membre du casting est impliqué, spécifié par son identifiant.
+     *
+     * @param int $peopleId L'identifiant du membre du casting.
+     * @return Cast[] Un tableau contenant tous les films dans lesquels le membre du casting est impliqué.
+     * @throws EntityNotFoundException Si aucun film n'est trouvé pour le membre du casting spécifié.
      */
     public static function findByPeopleId(int $peopleId): array
     {

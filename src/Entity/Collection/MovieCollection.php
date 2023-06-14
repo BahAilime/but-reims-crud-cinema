@@ -11,7 +11,9 @@ use PDO;
 class MovieCollection
 {
     /**
-     * @return Movie[]
+     * Récupère tous les films de la base de données.
+     *
+     * @return Movie[] Un tableau contenant tous les films.
      */
     public static function findAll(): array
     {

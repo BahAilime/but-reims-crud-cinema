@@ -23,7 +23,9 @@ class Movie
     /**
      * Constructeur privé
      */
-    private function __construct(){}
+    private function __construct()
+    {
+    }
 
     /**
      * @return int|null
@@ -162,6 +164,13 @@ class Movie
         $this->title = $title;
     }
 
+    /**
+     * Recherche un film par son identifiant.
+     *
+     * @param int $id L'identifiant du film à rechercher.
+     * @return Movie Le film correspondant à l'identifiant spécifié.
+     * @throws EntityNotFoundException Si aucun film n'est trouvé pour l'identifiant spécifié.
+     */
     public static function findById(int $id): Movie
     {
         $sql = MyPDO::getInstance()->prepare(
@@ -183,7 +192,20 @@ class Movie
         return $movie;
     }
 
-    public static function create($id = null, $title = null, $overview = null, $tagline = null, $originalLanguage = null, $releaseDate = null, $originalTitle = null, $runtime = null): Movie
+    /**
+     * Crée une instance de film avec les propriétés spécifiées.
+     *
+     * @param mixed|null $id
+     * @param string|null $title
+     * @param string|null $overview
+     * @param string|null $tagline
+     * @param string|null $originalLanguage
+     * @param string|null $releaseDate
+     * @param string|null $originalTitle
+     * @param int|null $runtime
+     * @return Movie Le film créé.
+     */
+    public static function create(mixed $id = null, string $title = null, string $overview = null, string $tagline = null, string $originalLanguage = null, string $releaseDate = null, string $originalTitle = null, int $runtime = null): Movie
     {
         $movie = new self();
         if ($id) {
@@ -213,6 +235,11 @@ class Movie
         return $movie;
     }
 
+    /**
+     * Supprime le film de la base de données.
+     *
+     * @return Movie Le film supprimé.
+     */
     public function delete(): Movie
     {
         if ($this->id !== null) {
@@ -229,6 +256,11 @@ class Movie
         return $this;
     }
 
+    /**
+     * Enregistre le film dans la base de données.
+     *
+     * @return Movie Le film enregistré.
+     */
     public function save(): Movie
     {
         if (!is_null($this->getId())) {
@@ -240,6 +272,11 @@ class Movie
         return $this;
     }
 
+    /**
+     * Met à jour les informations du film dans la base de données.
+     *
+     * @return Movie Le film mis à jour.
+     */
     protected function update(): Movie
     {
         $stmt = MyPdo::getInstance()->prepare(
@@ -255,15 +292,20 @@ class Movie
         WHERE id = ?
         SQL
         );
-        if ($this->getReleaseDate())
+        if ($this->getReleaseDate()) {
             $rDate = DateTime::createFromFormat("Y-m-d", $this->getReleaseDate()) ? DateTime::createFromFormat("Y-m-d", $this->getReleaseDate()) : null;
-        else {
+        } else {
             $rDate = null;
         }
         $stmt->execute([$this->getTitle(), $this->getOverview(), $this->getTagline(), $this->getOriginalLanguage(), $rDate->format("Y-m-d"), $this->getOriginalTitle(), $this->getRuntime(), $this->getId()]);
         return $this;
     }
 
+    /**
+     * Insère le film dans la base de données.
+     *
+     * @return Movie Le film inséré.
+     */
     protected function insert(): Movie
     {
         $sql = MyPDO::getInstance()->prepare(
@@ -278,9 +320,9 @@ class Movie
         VALUES (?, ?, ?, ?, ?, ?, ?);
         SQL
         );
-        if ($this->getReleaseDate())
+        if ($this->getReleaseDate()) {
             $rDate = DateTime::createFromFormat("Y-m-d", $this->getReleaseDate()) ? DateTime::createFromFormat("Y-m-d", $this->getReleaseDate()) : null;
-        else {
+        } else {
             $rDate = null;
         }
         $sql->execute([$this->getTitle(), $this->getOverview(), $this->getTagline(), $this->getOriginalLanguage(), $rDate->format("Y-m-d"), $this->getOriginalTitle(), $this->getRuntime()]);

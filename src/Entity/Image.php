@@ -32,11 +32,13 @@ class Image
     }
 
     /**
-     * @param int $id
-     * @throws EntityNotFoundException
-     * @return self
+     * Recherche une image par son identifiant.
+     *
+     * @param int $id L'identifiant de l'image à rechercher.
+     * @return Image L'image correspondant à l'identifiant.
+     * @throws EntityNotFoundException Si aucune image correspondante n'est trouvée.
      */
-    public static function findById(int $id): self
+    public static function findById(int $id): Image
     {
         $sql = MyPDO::getInstance()->prepare(
             <<<'SQL'

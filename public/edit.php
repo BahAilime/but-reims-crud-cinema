@@ -7,6 +7,11 @@ use Entity\Movie;
 use Html\WebPage;
 use Html\Form\MovieForm;
 
+/**
+ * Génère le formulaire de sélection d'un film.
+ *
+ * @return string Le code HTML du formulaire de sélection.
+ */
 function selection(): string
 {
 
@@ -26,6 +31,12 @@ function selection(): string
     HTML;
 }
 
+/**
+ * Génère le formulaire d'édition d'un film existant.
+ *
+ * @param int $id L'identifiant du film à éditer.
+ * @return string Le code HTML du formulaire d'édition.
+ */
 function edit(int $id): string
 {
     $movie = Movie::findById($id);
@@ -33,12 +44,23 @@ function edit(int $id): string
     return $form->getHtmlForm("/edit.php");
 }
 
+/**
+ * Génère le formulaire d'ajout d'un nouveau film.
+ *
+ * @return string Le code HTML du formulaire d'ajout.
+ */
 function add(): string
 {
     $form = new MovieForm();
     return $form->getHtmlForm("/edit.php");
 }
 
+/**
+ * Génère le lien de suppression d'un film.
+ *
+ * @param int $id L'identifiant du film à supprimer.
+ * @return string Le code HTML du lien de suppression.
+ */
 function delete(int $id): string
 {
     return <<<HTML
