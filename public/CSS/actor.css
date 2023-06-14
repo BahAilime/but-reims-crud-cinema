@@ -46,12 +46,6 @@ main {
     padding: var(--espace);
 }
 
-.acteur img {
-    object-fit: cover;
-    border-radius: 15px;
-    border: #b2b8c9 solid 4px;
-}
-
 .acteur-info {
     flex: 1;
     padding: 0 12px;
@@ -59,6 +53,14 @@ main {
     display: flex;
     flex-direction: column;
     gap: var(--espace);
+}
+
+.acteur .img {
+    flex: .3;
+    background-repeat: no-repeat;
+    background-size: contain;
+    object-fit: cover;
+    min-height: 500px;
 }
 
 .troisieme-ligne {

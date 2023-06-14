@@ -31,7 +31,9 @@ $titre = 'Film - ' . $movie->getTitle();
 $html->setTitle($titre);
 $html->appendToHead("<meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>");
-$html->appendContent("<header><div></div><h1>$titre</h1><nav><a href='index.php'><img src='img/home.png' alt='edit icon'></a><a href='edit.php?movieId={$movie->getId()}'><img src='img/edit.png' alt='edit icon'></a></nav></header><main><div class='film'><img src='/image.php?imgId={$movie->getPosterId()}' alt=''>
+$html->appendContent("<header><div></div><h1>$titre</h1><nav><a href='index.php'><img src='img/home.png' alt='edit icon'></a><a href='edit.php?movieId={$movie->getId()}'>
+<img src='img/edit.png' alt='edit icon'></a></nav></header><main><div class='film'>
+<div class='img' style=\"background-image: url('/image.php?imgId={$movie->getPosterId()}')\"  > </div>
     <div class='film-info'>
       <div class='prem-ligne'>
         <h1 class='titre'>{$movie->getTitle()}</h1>

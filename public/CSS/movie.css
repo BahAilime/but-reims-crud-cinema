@@ -70,10 +70,12 @@ main {
     padding: var(--espace);
 }
 
-.film img {
+.film .img {
+    flex: .3;
+    background-repeat: no-repeat;
+    background-size: contain;
     object-fit: cover;
-    border-radius: 15px;
-    border: #b2b8c9 solid 4px;
+    min-height: 500px;
 }
 
 .film-info {
