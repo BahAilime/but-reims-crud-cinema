@@ -52,19 +52,19 @@ class MovieForm
             <div class="modif">
                 <div class="island">
                     <label for="title">Titre</label>
-                    <input type="text" name="title" value="{$movieTitle}">
+                    <input type="text" name="title" value="{$movieTitle}" required>
                 </div>
                 <div class="island">
                     <label for="originalTitle">Titre original</label>
-                    <input type="text" name="originalTitle" value="{$movieOriginalTitle}">
+                    <input type="text" name="originalTitle" value="{$movieOriginalTitle}" required>
                 </div>
                 <div class="island">
                     <label for="overview">Résumé</label>
-                    <textarea name="overview" cols="40" rows="5">{$movieOverview}</textarea>
+                    <textarea name="overview" cols="40" rows="5" required>{$movieOverview}</textarea>
                 </div>
                 <div class="island">
                     <label for="language">Langue</label>
-                    <select name="language">
+                    <select name="language" required>
                         <option value="" selected disabled hidden>Langue ($movieLanguage)</option>
                         <option value="cn">Cn</option>
                         <option value="de">De</option>
@@ -78,15 +78,15 @@ class MovieForm
                 </div>
                 <div class="island">
                     <label for="runtime">Durée (en min)</label>
-                    <input type="number" name="runtime" value="{$movieRuntime}">
+                    <input type="number" name="runtime" required value="{$movieRuntime}">
                 </div>
                 <div class="island">
                     <label for="tagline">Slogan</label>
-                    <input type="text" name="tagline" value="{$movieTagline}">
+                    <input type="text" name="tagline" value="{$movieTagline}" required>
                 </div>
                 <div class="island">
                     <label for="releaseDate">Date de sortie</label>
-                    <input type="date" name="releaseDate" value="{$movieReleaseDate}">
+                    <input type="date" name="releaseDate" required value="{$movieReleaseDate}">
                 </div>
             </div>
             <button type="submit">Valider</button>
