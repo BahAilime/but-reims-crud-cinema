@@ -261,7 +261,7 @@ class Movie
         SQL
         );
 
-        $sql->execute([$this->getTitle()]);
+        $sql->execute([$this->getTitle(), $this->getOverview(), $this->getTagline(), $this->getOriginalLanguage(), $this->getReleaseDate(), $this->getOriginalTitle(), $this->getRuntime()]);
 
         $lastInsertId = MyPDO::getInstance()->lastInsertId();
         $this->setId((int)$lastInsertId);
