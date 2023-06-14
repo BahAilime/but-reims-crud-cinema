@@ -12,7 +12,24 @@ $html->appendToHead("<meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>");
 
 $html->setTitle('Films');
-$html->appendContent("<header><div></div><h1>Films</h1><nav><a href='edit.php'><img src='img/edit.png' alt='edit icon'></a></nav></header><main>");
+$html->appendContent("<header><div></div><h1>Films</h1><nav><a href='edit.php'><img src='img/edit.png' alt='edit icon'></a></nav></header>");
+$formHtml = "<div class='filtre'><form action='index.php' method='GET'>
+    <select name='genre' onchange='this.form.submit()'>
+        <option disabled hidden selected>Sélectionner un genre</option>
+        <option value='sansFiltre'>Sans filtre</option>";
+
+$selectedGenre = $_GET['genre'] ?? null;
+
+$genres = MovieCollection::getAllGenres();
+
+foreach ($genres as $genre) {
+    $formHtml .= "<option value='{$genre['id']}'>{$genre['name']}</option>";
+}
+
+$formHtml .= "</select></form></div>";
+
+$html->appendContent($formHtml);
+$html->appendContent("<main>");
 
 if (!isset($_GET['genre']) || !ctype_digit($_GET['genre'])) {
     $movies = MovieCollection::findAll();
@@ -25,24 +42,6 @@ foreach ($movies as $movie) {
       <h2>{$movie->getTitle()}</h2>
   </a>");
 }
-
-$selectedGenre = $_GET['genre'] ?? null;
-
-$genres = MovieCollection::getAllGenres();
-
-$formHtml = "<form action='index.php' method='GET'>
-    <select name='genre' onchange='this.form.submit()'>
-        <option disabled hidden selected>Sélectionner un genre</option>
-        <option value='sansFiltre'>Sans filtre</option>";
-
-foreach ($genres as $genre) {
-    $formHtml .= "<option value='{$genre['id']}'>{$genre['name']}</option>";
-}
-
-$formHtml .= "</select></form>";
-
-$html->appendContent($formHtml);
-
 
 $lastModif = $html->getLastModification();
 $html->appendContent("</main>

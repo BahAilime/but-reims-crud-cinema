@@ -3,7 +3,7 @@
     font-family: sans-serif;
 }
 
-header, footer, .film, nav img {
+header, footer, .film, nav img, .filtre {
     border-radius: 20px;
     box-shadow: 12px 12px 24px #b2b8c9, -12px -12px 24px #f0f8ff;
 }
@@ -40,6 +40,24 @@ header, footer {
     border-radius: 20px;
     -webkit-box-shadow: 12px 12px 24px #b2b8c9, -12px -12px 24px #f0f8ff;
     box-shadow: 12px 12px 24px #b2b8c9, -12px -12px 24px #f0f8ff;
+}
+
+.filtre, form {
+    display: flex;
+    padding: 10px;
+    margin: 5px 20px;
+    flex-direction: row;
+}
+
+select {
+    border-radius: 5px;
+    border: 1px #a3a9b9 solid;
+    padding: 10px;
+    background: #e1e7ff;
+}
+
+.filtre * {
+    flex: 1;
 }
 
 main {
