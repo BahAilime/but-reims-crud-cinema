@@ -57,10 +57,15 @@ class MovieForm
                 <div class="island">
                     <label for="language">Langue</label>
                     <select name="language">
-                        <option value="">Fr</option>
-                        <option value="1">En</option>
-                        <option value="2">Jp</option>
-                        <option value="3">De</option>
+                        <option value="" selected disabled hidden>Langue ($movieLanguage)</option>
+                        <option value="cn">Cn</option>
+                        <option value="de">De</option>
+                        <option value="en">En</option>
+                        <option value="fr">Fr</option>
+                        <option value="ja">Ja</option>
+                        <option value="pt">Pt</option>
+                        <option value="sv">Sv</option>
+                        <option value="zh">Zh</option>
                     </select>
                 </div>
                 <div class="island">
