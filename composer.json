@@ -30,11 +30,12 @@
         "start:windows": [
             "Composer\\Config::disableProcessTimeout",
             "bin/run-server.bat"
-        ]
-    },
+        ],
+        "test:cs":
+        "php vendor/bin/php-cs-fixer fix --dry-run --diff",
+        "fix:cs":
+        "php vendor/bin/php-cs-fixer fix"
+    }
 
-    "test:cs":
-    "php vendor/bin/php-cs-fixer fix --dry-run --diff",
-    "fix:cs":
-    "php vendor/bin/php-cs-fixer fix"
+
 }
