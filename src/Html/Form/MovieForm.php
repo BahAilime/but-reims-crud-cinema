@@ -79,10 +79,6 @@ class MovieForm
                     <label for="">Slogan</label>
                     <input type="text" name="tagline" value="{$movieTagline}">
                 </div>
-                <div class="movieReleaseDate">
-                    <label for="">Slogan</label>
-                    <input type="date" name="movieReleaseDate" value="{$movieReleaseDate}">
-                </div>
             </div>
             <button type="submit">Valider</button>
         </form>
