@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Entity\Collection\MovieCollection;
 use Entity\Movie;
 use Html\WebPage;
+use Html\Form\MovieForm;
 
 function selection(): string
 {
@@ -15,12 +16,12 @@ function selection(): string
     }
 
     return <<<HTML
-        <form action="/edit.php">
-      <select name="movieId">
+    <form action="/edit.php">
+      <select name="movieId" onchange="this.form.submit()">
+        <option value="" disabled hidden selected>Film</option>
         <option value="NEW">NOUVEAU</option>
         {$options}
       </select>
-      <button type="submit">Selectionner</button>
     </form>
     HTML;
 }
@@ -28,122 +29,48 @@ function selection(): string
 function edit(int $id): string
 {
     $movie = Movie::findById($id);
-
-    return <<<HTML
-    
-<form>
-    <input type="hidden" name="id" value="$id">
-    <div class="modif">
-      <div class="island">
-        <label for="title">Titre</label>
-        <input type="text" name="title" value="{$movie->getTitle()}">
-      </div>
-      <div class="island">
-        <label for="OGtitle">Titre original</label>
-        <input type="text" value="{$movie->getOriginalTitle()}">
-      </div>
-      <div class="island">
-        <label for="overview">Résumé</label>
-        <textarea name="overview" cols="40" rows="5">{$movie->getOverview()}</textarea>
-      </div>
-      <div class="island">
-        <label for="language">Langue</label>
-        <select name="language">
-          <option value="">Fr</option>
-          <option value="1">En</option>
-          <option value="2">Jp</option>
-          <option value="3">De</option>
-        </select>
-      </div>
-      <div class="island">
-        <label for="runtime">Durée (en min)</label>
-        <input type="number" name="runtime" value="{$movie->getRuntime()}">
-      </div>
-      <div class="island">
-        <label for="tagline">Slogan</label>
-        <input type="text" name="tagline" value="{$movie->getTagline()}">
-      </div>
-    </div>
-    <button type="submit">Valider</button>
-    </form>
-
-HTML;
-
+    $form = new MovieForm($movie);
+    return $form->getHtmlForm("/edit.php");
 }
 
 function add(): string
 {
-
-    return <<<HTML
-    
-<form>
-    <input type="hidden" name="id">
-    <div class="modif">
-      <div class="island">
-        <label for="title">Titre</label>
-        <input type="text" name="title">
-      </div>
-      <div class="island">
-        <label for="OGtitle">Titre original</label>
-        <input type="text" >
-      </div>
-      <div class="island">
-        <label for="overview">Résumé</label>
-        <textarea name="overview" cols="40" rows="5"></textarea>
-      </div>
-      <div class="island">
-        <label for="language">Langue</label>
-        <select name="language">
-          <option value="">Fr</option>
-          <option value="1">En</option>
-          <option value="2">Jp</option>
-          <option value="3">De</option>
-        </select>
-      </div>
-      <div class="island">
-        <label for="runtime">Durée (en min)</label>
-        <input type="number" name="runtime" >
-      </div>
-      <div class="island">
-        <label for="tagline">Slogan</label>
-        <input type="text" name="tagline" >
-      </div>
-    </div>
-    <button type="submit">Valider</button>
-    </form>
-
-HTML;
+    $form = new MovieForm();
+    return $form->getHtmlForm("/edit.php");
 }
 
 function delete(int $id): string
 {
     return <<<HTML
-<form>
-    <input type="hidden" name="id" value="$id">
-    <button type="submit" id="del">Supprimer</button>
-</form>
+<div class="delete">
+    <a href="/delete.php?id=$id" >Supprimer</a>
+</div>
 HTML;
 }
 
+
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['id']) && $_POST['id'] === "NEW") {
+    if ($_POST['id'] == "") {
         $movie = Movie::create();
-        if (isset($_POST['title'])) {
+        $movie->setId(null);
+        if (isset($_POST['title']) && $_POST['title'] != "") {
             $movie->setTitle($_POST['title']);
         }
-        if (isset($_POST['originalTitle'])) {
+        if (isset($_POST['originalTitle']) && $_POST['originalTitle'] != "") {
             $movie->setOriginalTitle($_POST['originalTitle']);
         }
-        if (isset($_POST['overview'])) {
+        if (isset($_POST['overview']) && $_POST['overview'] != "") {
             $movie->setOverview($_POST['overview']);
         }
-        if (isset($_POST['language'])) {
+        if (isset($_POST['language']) && $_POST['language'] != "") {
             $movie->setOriginalLanguage($_POST['language']);
         }
-        if (isset($_POST['runtime'])) {
+        if (isset($_POST['runtime']) && $_POST['runtime'] != "") {
             $movie->setRuntime((int)$_POST['runtime']);
         }
-        if (isset($_POST['tagline'])) {
+        if (isset($_POST['tagline']) && $_POST['tagline'] != "") {
             $movie->setTagline($_POST['tagline']);
         }
         $movie->save();

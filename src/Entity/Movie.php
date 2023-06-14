@@ -187,15 +187,29 @@ class Movie
     public static function create($id = null, $title = null, $overview = null, $tagline = null, $originalLanguage = null, $releaseDate = null, $originalTitle = null, $runtime = null): Movie
     {
         $movie = new self();
-        $movie->setTitle($title);
-        $movie->setOverview($overview);
-        $movie->setTagline($tagline);
-        $movie->setOriginalLanguage($originalLanguage);
-        $movie->setReleaseDate($releaseDate);
-        $movie->setOriginalTitle($originalTitle);
-        $movie->setRuntime($runtime);
         if ($id) {
             $movie->setId($id);
+        }
+        if ($title) {
+            $movie->setTitle($title);
+        }
+        if ($overview) {
+            $movie->setOverview($overview);
+        }
+        if ($tagline) {
+            $movie->setTagline($tagline);
+        }
+        if ($originalLanguage) {
+            $movie->setOriginalLanguage($originalLanguage);
+        }
+        if ($releaseDate) {
+            $movie->setReleaseDate($releaseDate);
+        }
+        if ($originalTitle) {
+            $movie->setOriginalTitle($originalTitle);
+        }
+        if ($runtime) {
+            $movie->setRuntime($runtime);
         }
         return $movie;
     }
@@ -242,8 +256,7 @@ class Movie
         WHERE id = ?
         SQL
         );
-        $stmt->execute([$this->getTitle(), $this->getId()]);
-
+        $stmt->execute([$this->getTitle(), $this->getOverview(), $this->getTagline(), $this->getOriginalLanguage(), $this->getReleaseDate(), $this->getOriginalTitle(), $this->getRuntime(), $this->getId()]);
         return $this;
     }
 
@@ -262,7 +275,7 @@ class Movie
         SQL
         );
 
-        $sql->execute([$this->getTitle()]);
+        $sql->execute([$this->getTitle(), $this->getOverview(), $this->getTagline(), $this->getOriginalLanguage(), $this->getReleaseDate(), $this->getOriginalTitle(), $this->getRuntime()]);
 
         $lastInsertId = MyPDO::getInstance()->lastInsertId();
         $this->setId((int)$lastInsertId);
