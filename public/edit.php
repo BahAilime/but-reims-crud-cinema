@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $movie->save();
 
-        header("Location: edit.php?movieId={$movie->getId()}");
+        header("Location: edit.php?movieId={$movie->getId()}&reussi=1");
         exit;
     } elseif (isset($_POST['id']) && ctype_digit($_POST['id'])) {
         $id = (int)$_POST['id'];
@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $movie->save();
 
-        header("Location: edit.php?movieId={$movie->getId()}");
+        header("Location: edit.php?movieId={$movie->getId()}&reussi=1");
         exit;
     } elseif (isset($_POST['id']) && $_POST['id'] === "DELETE") {
         header("Location: edit.php");
@@ -107,6 +107,13 @@ $html = new WebPage();
 $html->appendToHead("<meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>");
 $html->setTitle('Édit');
+if (!empty($_GET["reussi"])) {
+    $html->appendContent(<<<HTML
+<div class="validation" onClick="this.style.visibility = 'hidden'">
+  <div class="message">Opération réussie</div>
+</div>
+HTML);
+}
 $html->appendContent("<header><div></div><h1>Édit</h1><nav><a href='index.php'><img src='img/home.png' alt='edit icon'></a></nav></header><main>");
 $html->appendContent(selection());
 

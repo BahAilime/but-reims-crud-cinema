@@ -11,9 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id']) && ctype_digit($_
     try {
         $movie = Movie::findById($id);
         $movie->delete();
-        echo 'Film supprimé';
+//        echo 'Film supprimé';
 
-        header('Location: edit.php');
+        header('Location: edit.php?reussi=1');
         exit;
     } catch (EntityNotFoundException $e) {
 
