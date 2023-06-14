@@ -80,6 +80,10 @@ input, textarea, button, select {
     background: #e1e7ff;
 }
 
+button {
+    background: rgba(209, 245, 175);
+}
+
 form {
     padding: var(--espace);
     display: flex;
