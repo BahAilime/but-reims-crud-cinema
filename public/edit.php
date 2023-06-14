@@ -16,12 +16,12 @@ function selection(): string
     }
 
     return <<<HTML
-        <form action="/edit.php">
-      <select name="movieId">
+    <form action="/edit.php">
+      <select name="movieId" onchange="this.form.submit()">
+        <option value="" disabled hidden selected>Film</option>
         <option value="NEW">NOUVEAU</option>
         {$options}
       </select>
-      <button type="submit">Selectionner</button>
     </form>
     HTML;
 }
