@@ -36,7 +36,7 @@ $html->appendContent("<header>
       </header>
       <main>
         <div class='acteur'>
-            <img src='/image.php?imgId={$actor->getAvatarId()}' alt=''>
+            <div class='img' style=\"background-image: url('/image.php?imgId={$actor->getAvatarId()}')\"  ></div>
             <div class='acteur-info'>
                 <h1>{$actor->getName()}</h1>
                 <h2>{$actor->getPlaceOfBirth()}</h2>
