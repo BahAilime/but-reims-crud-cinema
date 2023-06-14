@@ -28,4 +28,46 @@ class MovieCollection
 
         return $sql->fetchAll(PDO::FETCH_CLASS, Movie::class);
     }
+
+    /**
+     * Recherche les films par genre.
+     *
+     * @param string $genre Le genre des films à rechercher.
+     * @return Movie[] Un tableau contenant les films correspondants au genre.
+     */
+    public static function findByGenre(string $genre): array
+    {
+        $sql = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+        SELECT *
+        FROM movie m
+        JOIN movie_genre g ON (g.movieId = m.id)
+        WHERE genreId = ?;
+        SQL
+        );
+
+        $sql->execute([$genre]);
+
+        return $sql->fetchAll(PDO::FETCH_CLASS, Movie::class);
+    }
+
+    /**
+     * Renvoie un tableau de tout les noms des genres
+     *
+     * @return bool|array Un tableau contenant le nom des genres.
+     */
+    public static function getAllGenres(): bool|array
+    {
+        $sql = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+        SELECT id, name
+        FROM genre;
+    SQL
+        );
+
+        $sql->execute();
+
+        return $sql->fetchAll();
+    }
+
 }
