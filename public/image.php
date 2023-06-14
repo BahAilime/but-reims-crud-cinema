@@ -15,8 +15,13 @@ try {
     $cover = Image::findById((int)$id);
     header('Content-Type: image/jpeg');
     echo $cover->getJpeg();
+
 } catch (Exception) {
     header('Content-Type: image/png');
-    $imageData = readfile("img/notFound.png");
+    if (!empty($_GET["tpImg"]) && $_GET["tpImg"] == 'poster') {
+        $imageData = readfile("img/notFound.png");
+    } else {
+        $imageData = readfile("img/actor.png");
+    }
     echo $imageData;
 }
