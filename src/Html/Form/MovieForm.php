@@ -36,6 +36,7 @@ class MovieForm
         $movieLanguage = $this->movie?->getOriginalLanguage() ? $this->escapeString($this->movie?->getOriginalLanguage()) : null;
         $movieRuntime = (string)$this->movie?->getRuntime() ? $this->escapeString((string)$this->movie?->getRuntime()) : null;
         $movieTagline = $this->movie?->getTagline() ? $this->escapeString($this->movie?->getTagline()) : null;
+        $movieReleaseDate = $this->movie?->getReleaseDate() ? $this->escapeString($this->movie?->getReleaseDate()) : null;
 
         return <<<HTML
         <form action="{$action}" method="post">
@@ -69,6 +70,10 @@ class MovieForm
                 <div class="island">
                     <label for="tagline">Slogan</label>
                     <input type="text" name="tagline" value="{$movieTagline}">
+                </div>
+                <div class="island">
+                    <label for="releaseDate">Date de sortie</label>
+                    <input type="date" name="releaseDate" value="{$movieReleaseDate}">
                 </div>
             </div>
             <button type="submit">Valider</button>
