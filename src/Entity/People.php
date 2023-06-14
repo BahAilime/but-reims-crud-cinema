@@ -67,6 +67,13 @@ class People
         return $this->placeOfBirth;
     }
 
+    /**
+     * Recherche une personne par son identifiant.
+     *
+     * @param int $id L'identifiant de la personne à rechercher.
+     * @return People La personne correspondant à l'identifiant.
+     * @throws EntityNotFoundException Si aucune personne correspondante n'est trouvée.
+     */
     public static function findById(int $id): People
     {
         $sql = MyPDO::getInstance()->prepare(

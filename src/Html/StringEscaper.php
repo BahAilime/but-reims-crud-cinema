@@ -8,6 +8,7 @@ trait StringEscaper
 {
     /**
      * Protéger les caractères spéciaux pouvant dégrader la page Web.
+     *
      * @param string $string La chaîne à protéger
      * @return string
      */

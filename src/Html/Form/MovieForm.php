@@ -13,6 +13,8 @@ class MovieForm
     private ?Movie $movie;
 
     /**
+     * Constructeur de la classe MovieForm
+     *
      * @param Movie|null $movie
      */
     public function __construct(?Movie $movie = null)
@@ -28,6 +30,12 @@ class MovieForm
         return $this->movie;
     }
 
+    /**
+     * Renvoie le formulaire HTML pour la modification d'un film.
+     *
+     * @param string $action L'URL de l'action du formulaire.
+     * @return string Le code HTML du formulaire.
+     */
     public function getHtmlForm(string $action): string
     {
         $movieTitle = $this->movie?->getTitle() ? $this->escapeString($this->movie?->getTitle()) : null;
