@@ -3,7 +3,7 @@
     font-family: sans-serif;
 }
 
-header, footer, .film {
+header, footer, .film, nav img {
     border-radius: 20px;
     box-shadow: 12px 12px 24px #b2b8c9, -12px -12px 24px #f0f8ff;
 }
@@ -17,6 +17,10 @@ header {
 
 nav, header div {
     padding-right: 50px;
+}
+
+nav img {
+    padding: 5px;
 }
 
 body {

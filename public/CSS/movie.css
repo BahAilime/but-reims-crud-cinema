@@ -28,6 +28,10 @@ header {
 
 }
 
+nav img {
+    padding: 5px;
+}
+
 nav {
     padding-right: 50px;
 
