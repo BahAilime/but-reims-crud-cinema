@@ -101,7 +101,7 @@ class Movie
 
 
     /**
-     * @param int|null $id
+     * @param ?int $id
      */
     public function setId(?int $id): void
     {
