@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Entity;
 
 use Database\MyPdo;
-use DateTime;
 use Entity\Exception\EntityNotFoundException;
 
 class Movie
@@ -21,39 +20,22 @@ class Movie
     private string $title;
 
     /**
-     * @param int|null $id
-     * @param int|null $posterId
-     * @param string $originalLanguage
-     * @param string $originalTitle
-     * @param string $overview
-     * @param string $releaseDate
-     * @param int $runtime
-     * @param string $tagline
-     * @param string $title
+     * Constructeur privé
      */
-    private function __construct(?int $id=null, ?int $posterId=null, ?string $originalLanguage=null, ?string $originalTitle=null, ?string $overview=null, ?string $releaseDate=null, ?int $runtime=null, ?string $tagline=null, ?string $title=null)
+    private function __construct()
     {
-        $this->id = $id;
-        $this->posterId = $posterId;
-        $this->originalLanguage = $originalLanguage;
-        $this->originalTitle = $originalTitle;
-        $this->overview = $overview;
-        $this->releaseDate = $releaseDate;
-        $this->runtime = $runtime;
-        $this->tagline = $tagline;
-        $this->title = $title;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @return ?int
+     * @return int|null
      */
     public function getPosterId(): ?int
     {
@@ -118,7 +100,7 @@ class Movie
 
 
     /**
-     * @param int $id
+     * @param int|null $id
      */
     public function setId(?int $id): void
     {
@@ -181,11 +163,37 @@ class Movie
         $this->title = $title;
     }
 
+    public static function findById(int $id): Movie
+    {
+        $sql = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+            SELECT *
+            FROM movie
+            WHERE id = ?;
+        SQL
+        );
 
-    public static function create($title, $id = null): Movie
+        $sql->execute([$id]);
+
+        $movie = $sql->fetchObject(Movie::class);
+
+        if (!$movie) {
+            throw new EntityNotFoundException();
+        }
+
+        return $movie;
+    }
+
+    public static function create($id = null, $title = null, $overview = null, $tagline = null, $originalLanguage = null, $releaseDate = null, $originalTitle = null, $runtime = null): Movie
     {
         $movie = new self();
         $movie->setTitle($title);
+        $movie->setOverview($overview);
+        $movie->setTagline($tagline);
+        $movie->setOriginalLanguage($originalLanguage);
+        $movie->setReleaseDate($releaseDate);
+        $movie->setOriginalTitle($originalTitle);
+        $movie->setRuntime($runtime);
         if ($id) {
             $movie->setId($id);
         }
@@ -199,7 +207,7 @@ class Movie
                 <<<'SQL'
     DELETE FROM movie
     WHERE id = ?
-SQL
+    SQL
             );
             $stmt->execute([$this->getId()]);
         }
@@ -224,7 +232,13 @@ SQL
         $stmt = MyPdo::getInstance()->prepare(
             <<<'SQL'
         UPDATE movie
-        SET title = ?
+        SET title = ?,
+            overview = ?,
+            tagline = ?,
+            originalLanguage = ?,
+            releaseDate = ?,
+            originalTitle = ?,
+            runtime = ?
         WHERE id = ?
         SQL
         );
