@@ -138,16 +138,6 @@ HTML;
     }
 
     /**
-     * Protéger les caractères spéciaux pouvant dégrader la page Web.
-     * @param string $string La chaîne à protéger
-     * @return string
-     */
-    public function escapeString(string $string): string
-    {
-        return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5);
-    }
-
-    /**
      * Donner la date et l'heure de la dernière modification du script principal.
      * @return string
      */
