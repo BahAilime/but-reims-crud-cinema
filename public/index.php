@@ -17,7 +17,7 @@ $html->appendContent("<header><div></div><h1>Films</h1><nav><a href='edit.php'><
 $movies = MovieCollection::findAll();
 foreach ($movies as $movie) {
     $html->appendContent("<a href='movie.php?movieId={$movie->getId()}' class='film'>
-    <img src='/image.php?imgId={$movie->getPosterId()}' alt='Poster ID'>
+    <img src='/image.php?tpImg=poster&&imgId={$movie->getPosterId()}' alt='Poster ID'>
       <h2>{$movie->getTitle()}</h2>
   </a>");
 }
